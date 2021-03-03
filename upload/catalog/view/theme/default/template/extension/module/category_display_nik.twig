@@ -1,0 +1,122 @@
+<style>
+  .category-card {
+    border: 1px solid #dadada;
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    padding: 10px;
+  }
+  .category-card a {
+    text-decoration: none;
+    color: black;
+  }
+  .category-card-row {
+    margin: 0;
+  }
+  .category-card-item {
+    height: fit-content;
+    margin: 10px;
+  }
+  .show_all_categories {
+    text-decoration: underline;
+    color: gray;
+  }
+  .display-category-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 350px;
+  }
+</style>
+
+{% if display_heading or all_categories_link %}
+  <div class="display-category-header">
+    {% if display_heading %}
+      <h3>{{ name }}</h3>
+    {% endif %}
+    {% if all_categories_link %}
+      <a class="show_all_categories" href="{{ all_categories_link }}">{{ text_show_all }}</a>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if display_type == 'carousel' %}
+
+  <div class="row">
+    <div class="swiper-viewport">
+      <div id="display-category-carousel{{ module }}" class="swiper-container">
+        <div class="swiper-wrapper">
+          {% set index = 0 %}
+          {% for category in categories %}
+            {% if index % 2 == 0 %}<div class="category-card-row swiper-slide col-lg-3 col-md-3 col-sm-6 col-xs-12">{% endif %}
+            <div class="category-card-item ">
+              <div class="category-card transition">
+                {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" class="img-responsive" /></a></div>{% endif %}
+                <div class="caption">
+                  <h4><a href="{{ category.href }}">{{ category.name }}</a></h4>
+                </div>
+              </div>
+            </div>
+            {% if index % 2 == 1 %}</div>{% endif %}
+            {% set index = index + 1 %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="swiper-pagination display-category-carousel{{ module }}"></div>
+      <div class="swiper-pager">
+        <div class="swiper-button-next swiper-button-next-display-category-carousel{{ module }}"></div>
+        <div class="swiper-button-prev swiper-button-prev-display-category-carousel{{ module }}"></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+        $('#display-category-carousel{{ module }}').swiper({
+            mode: 'horizontal',
+            slidesPerView: 4,
+            pagination: '.display-category-carousel{{ module }}',
+            paginationClickable: true,
+            nextButton: '.swiper-button-next-display-category-carousel{{ module }}',
+            prevButton: '.swiper-button-prev-display-category-carousel{{ module }}',
+            autoplay: 2500,
+        });
+    </script>
+  </div>
+
+{% elseif display_type == 'table' %}
+
+  <div class="row">
+    {% set index = 0 %}
+    {% for category in categories %}
+      {% if index % 2 == 0 %}<div class="category-card-row col-sm-3">{% endif %}
+      <div class="category-card-item ">
+        <div class="category-card transition">
+          {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" class="img-responsive" /></a></div>{% endif %}
+          <div class="caption">
+            <h4><a href="{{ category.href }}">{{ category.name }}</a></h4>
+          </div>
+        </div>
+      </div>
+      {% if index % 2 == 1 %}</div>{% endif %}
+      {% set index = index + 1 %}
+    {% endfor %}
+  </div>
+
+{% elseif display_type == 'list' %}
+
+  <div class="row">
+    {% set index = 0 %}
+    {% for category in categories %}
+      {% if index % 2 == 0 %}<div class="category-card-row col-lg-12">{% endif %}
+      <div class="category-card-item ">
+        <div class="category-card transition">
+          {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" class="img-responsive" /></a></div>{% endif %}
+          <div class="caption">
+            <h4><a href="{{ category.href }}">{{ category.name }}</a></h4>
+          </div>
+        </div>
+      </div>
+      {% if index % 2 == 1 %}</div>{% endif %}
+      {% set index = index + 1 %}
+    {% endfor %}
+  </div>
+
+{% endif %}
