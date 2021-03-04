@@ -4,14 +4,15 @@
     display: flex;
     align-items: center;
     min-height: 100px;
-    padding: 25px;
+    padding: 10px;
+    padding-left: 25px;
   }
   .category-card a {
     text-decoration: none;
     color: black;
   }
-  .category-card .caption {
-    margin-left: 15px;
+  .category-card .image {
+    margin-right: 15px;
   }
   .category-card-row {
     margin: 0;
@@ -30,8 +31,16 @@
     display: flex;
     align-items: baseline;
   }
+  .caption-text {
+    font-size: 14px;
+  }
+  @media (max-width: 992px) {
+    .caption-text {
+      font-size: 12px;
+    }
+  }
 </style>
-<div class="row">
+
 {% if display_heading or all_categories_link %}
   <div class="display-category-header">
     {% if display_heading %}
@@ -42,7 +51,7 @@
     {% endif %}
   </div>
 {% endif %}
-
+<div class="row">
 {% if display_type == 'carousel' %}
 
 
@@ -54,15 +63,16 @@
             {% if index % 2 == 0 %}<div class="category-card-row swiper-slide col-lg-3 col-md-3 col-sm-6 col-xs-12">{% endif %}
             <div class="category-card-item ">
               <div class="category-card transition">
-                {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" class="img-responsive" /></a></div>{% endif %}
+                {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" /></a></div>{% endif %}
                 <div class="caption">
-                  <h4><a href="{{ category.href }}">{{ category.name }}</a></h4>
+                  <span class="caption-text"><a href="{{ category.href }}">{{ category.name }}</a></span>
                 </div>
               </div>
             </div>
             {% if index % 2 == 1 %}</div>{% endif %}
             {% set index = index + 1 %}
           {% endfor %}
+          {% if index % 2 == 1 %}</div>{% endif %}
         </div>
       </div>
       <div class="swiper-pagination display-category-carousel{{ module }}"></div>
@@ -103,7 +113,7 @@
       <div class="col-sm-3">
         <div class="category-card-item">
           <div class="category-card transition">
-            {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" class="img-responsive" /></a></div>{% endif %}
+            {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}"/></a></div>{% endif %}
             <div class="caption">
               <h4><a href="{{ category.href }}">{{ category.name }}</a></h4>
             </div>
@@ -119,7 +129,7 @@
       {% if index % 2 == 0 %}<div class="category-card-row col-lg-12">{% endif %}
       <div class="category-card-item ">
         <div class="category-card transition">
-          {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" class="img-responsive" /></a></div>{% endif %}
+          {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" /></a></div>{% endif %}
           <div class="caption">
             <h4><a href="{{ category.href }}">{{ category.name }}</a></h4>
           </div>
