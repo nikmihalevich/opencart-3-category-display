@@ -34,6 +34,9 @@
   .caption-text {
     font-size: 14px;
   }
+  .padding-0 {
+    padding: 0;
+  }
   @media (max-width: 992px) {
     .caption-text {
       font-size: 12px;
@@ -100,7 +103,7 @@
                     slidesPerView: 2,
                 },
                 // when window width is >= 640px
-                768: {
+                992: {
                     slidesPerView: 3,
                 }
             }
@@ -110,7 +113,7 @@
 {% elseif display_type == 'table' %}
 
     {% for category in categories %}
-      <div class="col-sm-3">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-0">
         <div class="category-card-item">
           <div class="category-card transition">
             {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}"/></a></div>{% endif %}
