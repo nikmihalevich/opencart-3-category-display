@@ -127,19 +127,17 @@
 
 {% elseif display_type == 'list' %}
 
-    {% set index = 0 %}
     {% for category in categories %}
-      {% if index % 2 == 0 %}<div class="category-card-row col-lg-12">{% endif %}
-      <div class="category-card-item ">
-        <div class="category-card transition">
-          {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" /></a></div>{% endif %}
-          <div class="caption">
-            <h4><a href="{{ category.href }}">{{ category.name }}</a></h4>
+      <div class="category-card-row col-lg-12">
+        <div class="category-card-item ">
+          <div class="category-card transition">
+            {% if category.thumb %}<div class="image"><a href="{{ category.href }}"><img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" /></a></div>{% endif %}
+            <div class="caption">
+              <h4><a href="{{ category.href }}">{{ category.name }}</a></h4>
+            </div>
           </div>
         </div>
       </div>
-      {% if index % 2 == 1 %}</div>{% endif %}
-      {% set index = index + 1 %}
     {% endfor %}
 
 {% endif %}
