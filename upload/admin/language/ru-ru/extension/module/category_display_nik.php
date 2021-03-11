@@ -20,7 +20,7 @@ $_['text_together_random'] = 'Все вместе в случайном поря
 // Entry
 $_['entry_name']       = 'Название модуля';
 $_['entry_display_heading'] = 'Показать заголовок модуля';
-$_['entry_recommended'] = 'Рекомендуемые';
+$_['entry_categories'] = 'Категории';
 $_['entry_all_categories_link'] = 'Ссылка на все категории';
 $_['entry_products_list'] = 'Список товаров';
 $_['entry_display_type'] = 'Вид отображения';
